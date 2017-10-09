@@ -26,6 +26,6 @@ Each file that will be displayed with a ✓ has been either already staged befor
 
 Press `ctrl + c` or `q` to leave the interface.
 
-<img src="https://gifyu.com/images/2017-10-09-19.12.01.gif" width="50%" height="auto" style="margin-left: 50%" />
+<p align="center"><img src="https://gifyu.com/images/2017-10-09-22.38.31.gif" width="50%" height="auto" style="margin-left: 50%" /></p>
 
 This is a very young release and there are probably a lot of cases that are not yet handled. Feel free to let me know and I will fix the issues as far as I can.
