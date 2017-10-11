@@ -3,20 +3,25 @@ jobs:
   build:
     docker:
       - image: circleci/node:8
-    working_directory: ~/code
+    working_directory: ~/git-add-interactive
     steps:
       - checkout
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: yarn install
-      - run: yarn global add codecov
+      - run: yarn
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn test:coverage
-      - run: codecov
-
-
+  test:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - run:
+          name: Test
+          command: yarn test:coverage
+    post:
+      - bash <(curl -s https://codecov.io/bash)
