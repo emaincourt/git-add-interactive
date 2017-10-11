@@ -39,7 +39,7 @@ describe('#getDisplayName', () => {
     expect.assertions(1);
     const params = {
       name: 'foo',
-      status: 'staged',
+      status: ':none',
     };
     expect(
       (new File(params)).getDisplayName(),
@@ -63,14 +63,14 @@ describe('#trigger', () => {
     expect.assertions(4);
     const params = {
       name: 'foo',
-      status: 'staged',
+      status: ':none',
     };
     const file = new File(params);
     file.trigger();
-    expect(file.status).toEqual('untracked');
+    expect(file.status).toEqual(':none');
     expect(file.modified).toEqual(true);
     file.trigger();
-    expect(file.status).toEqual('staged');
+    expect(file.status).toEqual(':none');
     expect(file.modified).toEqual(false);
   });
 });

@@ -39,9 +39,9 @@ describe('#fromGit', () => {
     const fileManager = FileManager.fromGit();
     expect(mocks['Git.status']).toHaveBeenCalled();
     expect(fileManager.files).toEqual(expect.arrayContaining([
-      { name: 'foo', status: 'staged', modified: false },
-      { name: 'bar', status: 'untracked', modified: false },
-      { name: 'mo', status: 'modified', modified: false },
+      { name: 'foo', status: 'added:none', modified: false },
+      { name: 'bar', status: 'untracked:untracked', modified: false },
+      { name: 'mo', status: 'added:modified', modified: false },
     ]));
     Object.keys(mocks).forEach(mock => mocks[mock].mockRestore());
   });
@@ -63,22 +63,47 @@ describe('#getStatus', () => {
   it('is able to find the status for an added file', () => {
     expect.assertions(1);
     expect(
-      FileManager.getStatus('A'),
-    ).toEqual('staged');
+      FileManager.getStatus('A '),
+    ).toEqual('added:none');
   });
 
   it('is able to find the status for a modified file', () => {
-    expect.assertions(1);
+    expect.assertions(4);
+    expect(
+      FileManager.getStatus('M '),
+    ).toEqual('modified:none');
+    expect(
+      FileManager.getStatus('MM'),
+    ).toEqual('modified:modified');
     expect(
       FileManager.getStatus('AM'),
-    ).toEqual('modified');
+    ).toEqual('added:modified');
+    expect(
+      FileManager.getStatus(' M'),
+    ).toEqual('none:modified');
+  });
+
+  it('is able to find the status for a deleted file', () => {
+    expect.assertions(3);
+    expect(
+      FileManager.getStatus('MD'),
+    ).toEqual('modified:deleted');
+    expect(
+      FileManager.getStatus(' D'),
+    ).toEqual('none:deleted');
+    expect(
+      FileManager.getStatus('AD'),
+    ).toEqual('added:deleted');
   });
 
   it('will consider any other file as untracked', () => {
-    expect.assertions(1);
+    expect.assertions(2);
     expect(
       FileManager.getStatus('??'),
-    ).toEqual('untracked');
+    ).toEqual('untracked:untracked');
+    expect(
+      FileManager.getStatus('foo'),
+    ).toEqual('untracked:untracked');
   });
 });
 
@@ -86,9 +111,9 @@ describe('#applyChanges', () => {
   it('applies changes if needed according to the previous status', () => {
     expect.assertions(4);
     const files = [
-      { name: 'foo', status: 'staged', modified: true },
-      { name: 'bar', status: 'untracked', modified: true },
-      { name: 'foobar', status: 'modified', modified: true },
+      { name: 'foo', status: 'added:modified', modified: true },
+      { name: 'bar', status: 'added:none', modified: true },
+      { name: 'foobar', status: 'modified:modified', modified: true },
       { name: 'abc', status: 'deleted', modified: true },
       { name: 'barfoo', status: 'modified', modified: false },
     ];
@@ -103,10 +128,10 @@ describe('#applyChanges', () => {
       fileManager.applyChanges(),
     ).toEqual(
       expect.arrayContaining([
-        { name: 'foo', status: 'staged', modified: false },
-        { name: 'bar', status: 'untracked', modified: false },
-        { name: 'abc', status: 'deleted', modified: false },
-        { name: 'foobar', status: 'modified', modified: false },
+        { name: 'foo', status: 'added:modified', modified: true },
+        { name: 'bar', status: 'added:none', modified: true },
+        { name: 'abc', status: 'deleted', modified: true },
+        { name: 'foobar', status: 'modified:modified', modified: true },
       ]),
     );
     expect(mocks['Git.stage'].mock.calls[0][0]).toEqual('foo');
