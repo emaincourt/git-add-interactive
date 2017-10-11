@@ -10,7 +10,9 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: yarn
+      - run:
+          - name: Install dependencies
+          - command: yarn
       - save_cache:
           paths:
             - node_modules
@@ -21,7 +23,18 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test
+          name: Test and generate code coverage
           command: yarn test:coverage
     post:
       - bash <(curl -s https://codecov.io/bash)
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
