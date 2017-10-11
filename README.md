@@ -1,3 +1,8 @@
+[![NPM](https://nodei.co/npm/git-add-interactive.png?compact=true)](https://npmjs.org/package/git-add-interactive)
+[![CircleCI](https://circleci.com/gh/emaincourt/git-add-interactive.svg?style=svg)](https://circleci.com/gh/emaincourt/git-add-interactive)
+[![codecov](https://codecov.io/gh/emaincourt/git-add-interactive/branch/master/graph/badge.svg)](https://codecov.io/gh/emaincourt/git-add-interactive)
+
+
 ## :card_index: git-add-interactive
 
 Leverages the [blessed](https://github.com/chjj/blessed) library to provide an alternative to `git add -i`, giving the ability to dynamically stage/remove files before committing.
