@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#constructor throws an error if the file name, status, or both of them are missing 1`] = `"File requires at least a name and a status"`;
+
+exports[`#constructor throws an error if the file name, status, or both of them are missing 2`] = `"File requires at least a name and a status"`;
+
+exports[`#constructor throws an error if the file name, status, or both of them are missing 3`] = `"File requires at least a name and a status"`;
+
+exports[`#getDisplayName returns the display name of the file by adding an icon in front if the file status is staged 1`] = `"{#60971A-fg}✓{/} foo"`;
+
+exports[`#getDisplayName returns the name of the file as is if the file status is not staged 1`] = `"foo"`;

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#constructor attaches all the components to the interface on instantiation 1`] = `
+Object {
+  "footer": Object {
+    "setContent": [Function],
+  },
+  "header": Object {},
+  "layout": Object {
+    "append": [Function],
+  },
+  "list": Object {
+    "focus": [Function],
+    "setItems": [Function],
+  },
+  "screen": Object {
+    "append": [Function],
+    "render": [Function],
+  },
+}
+`;
