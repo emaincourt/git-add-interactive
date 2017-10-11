@@ -2,26 +2,23 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8
-    working_directory: ~/git-add-interactive
+      - image: circleci/node:7.10
+    working_directory: ~/code
+    branches:
+      only:
+        - master
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run: yarn
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          command: |
+            yarn --pure-lockfile --silent
+            yarn test:coverage
+            bash <(curl -s https://codecov.io/bash)
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-  test:
-    docker:
-      - image: circleci/node:8
-    steps:
-      - checkout
-      - run:
-          name: Test
-          command: yarn test:coverage
-    post:
-      - bash <(curl -s https://codecov.io/bash)
