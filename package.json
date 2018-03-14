@@ -1,6 +1,6 @@
 {
   "name": "git-add-interactive",
-  "version": "0.4.0",
+  "version": "0.3.0",
   "description": "Dynamically stage files to git",
   "main": "dist",
   "repository": "https://github.com/emaincourt/git-add-interactive",
@@ -16,8 +16,20 @@
   "bin": {
     "git-add-interactive": "./bin/git-add-interactive.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jest": "^21.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.3.0",
+    "jest": "^21.2.1"
+  },
   "dependencies": {
+    "blessed": "^0.1.81",
+    "bluebird": "^3.5.0",
+    "node-emoji": "^1.8.1",
+    "lodash": "^4.17.4",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
@@ -25,17 +37,6 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "blessed": "^0.1.81",
-    "bluebird": "^3.5.0",
-    "eslint": "^4.5.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jest": "^21.2.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.3.0",
-    "jest": "^21.2.1",
-    "lodash": "^4.17.4",
-    "node-emoji": "^1.8.1"
+    "babel-preset-env": "^1.6.0"
   }
 }
