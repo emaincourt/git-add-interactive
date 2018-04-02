@@ -11,7 +11,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "build": "babel lib -d dist",
-    "start": "node dist"
+    "start": "node dist",
+    "prepare": "yarn test",
+    "prepublishOnly": "yarn build"
   },
   "bin": {
     "git-add-interactive": "./bin/git-add-interactive.js"
