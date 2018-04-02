@@ -29,12 +29,12 @@ git config --global alias.add-interactive "!git-add-interactive"
 * remove a newly created or modified file
 * show the diff of the currently selected file
 
-Each file that will be displayed with a ✓ has been either already staged before or will be after pressing `enter`. Navigate with the `up` and `down` arrows of your keyboard and press `press` to trigger the selection of a file. You can also use `ctrl + a` to automatically trigger all files. Press then `Enter` to apply the changes.
+Each file that will be displayed with a ✓ has been either already staged before or will be after pressing `enter`. Navigate with the `up` and `down` arrows of your keyboard and press `space` to trigger the selection of a file. You can also use `ctrl + a` to automatically trigger all files. Press then `Enter` to apply the changes.
 
 You can also press `d` to show the diff of the file. Any other key press will hide the diff window. This diff window is also scrollable and draggable.
 
 Press `ctrl + c` or `q` to leave the interface.
 
-<p align="center"><img src="https://gifyu.com/images/2017-10-09-22.38.31.gif" width="50%" height="auto" style="margin-left: 50%" /></p>
+<p align="center"><img src="https://s1.gifyu.com/images/2018-04-04-09.49.48.gif" width="50%" height="auto" style="margin-left: 50%" /></p>
 
 Feel free to let me know and I will fix the issues as far as I can.
