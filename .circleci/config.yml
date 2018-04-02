@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:9.10-stretch
     working_directory: ~/code
     branches:
       only:
@@ -15,7 +15,7 @@ jobs:
             - v1-dependencies-
       - run:
           command: |
-            yarn --pure-lockfile --silent
+            yarn --force --pure-lockfile --silent
             yarn test:coverage
             bash <(curl -s https://codecov.io/bash)
       - save_cache:
