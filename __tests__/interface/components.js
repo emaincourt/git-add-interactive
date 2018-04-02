@@ -4,8 +4,9 @@ describe('#header', () => {
   it('instantiates the header', () => {
     expect.assertions(1);
     const mocks = {
-      'blessed.text': jest.spyOn(blessed, 'text')
-        .mockImplementationOnce(() => {}),
+      'blessed.text': jest
+        .spyOn(blessed, 'text')
+        .mockImplementationOnce(() => {})
     };
     require('../../lib/interface/header');
     expect(mocks['blessed.text']).toHaveBeenCalled();
@@ -17,8 +18,9 @@ describe('#footer', () => {
   it('instantiates the footer', () => {
     expect.assertions(1);
     const mocks = {
-      'blessed.text': jest.spyOn(blessed, 'text')
-        .mockImplementationOnce(() => {}),
+      'blessed.text': jest
+        .spyOn(blessed, 'text')
+        .mockImplementationOnce(() => {})
     };
     require('../../lib/interface/footer');
     expect(mocks['blessed.text']).toHaveBeenCalled();
@@ -28,17 +30,23 @@ describe('#footer', () => {
 
 describe('#list', () => {
   it('instantiates the list', () => {
-    expect.assertions(4);
+    expect.assertions(5);
     const key = jest.fn();
+    const on = jest.fn();
     const mocks = {
-      'blessed.list': jest.spyOn(blessed, 'list')
-        .mockImplementationOnce(() => ({ key })),
+      'blessed.list': jest
+        .spyOn(blessed, 'list')
+        .mockImplementationOnce(() => ({ key, on })),
+      'blessed.text': jest
+        .spyOn(blessed, 'text')
+        .mockImplementationOnce(() => ({ key }))
     };
     require('../../lib/interface/list');
     expect(mocks['blessed.list']).toHaveBeenCalled();
     expect(key.mock.calls[0][0]).toEqual(['space']);
-    expect(key.mock.calls[1][0]).toEqual(['C-a']);
-    expect(key.mock.calls[2][0]).toEqual(['enter']);
+    expect(key.mock.calls[1][0]).toEqual(['d']);
+    expect(key.mock.calls[2][0]).toEqual(['C-a']);
+    expect(key.mock.calls[3][0]).toEqual(['enter']);
     Object.keys(mocks).forEach(mock => mocks[mock].mockRestore());
   });
 });
@@ -47,13 +55,14 @@ describe('#layout', () => {
   it('instantiates the layout', () => {
     expect.assertions(1);
     const mocks = {
-      'blessed.layout': jest.spyOn(blessed, 'layout')
-        .mockImplementationOnce(() => {}),
+      'blessed.layout': jest
+        .spyOn(blessed, 'layout')
+        .mockImplementationOnce(() => {})
     };
     require('../../lib/interface/layout');
-    expect(Object.keys(mocks['blessed.layout'].mock.calls[0][0])).toEqual(expect.arrayContaining([
-      'width', 'height', 'renderer',
-    ]));
+    expect(Object.keys(mocks['blessed.layout'].mock.calls[0][0])).toEqual(
+      expect.arrayContaining(['width', 'height', 'renderer'])
+    );
     Object.keys(mocks).forEach(mock => mocks[mock].mockRestore());
   });
 
@@ -70,12 +79,12 @@ describe('#layout', () => {
     const items = [
       {
         shrink: false,
-        position: { left: null, top: null },
+        position: { left: null, top: null }
       },
       {
         shrink: false,
-        position: { left: null, top: null },
-      },
+        position: { left: null, top: null }
+      }
     ];
     layout.renderer()(items[0], 0);
     layout.renderer()(items[1], 1);
@@ -94,8 +103,9 @@ describe('#screen', () => {
     expect.assertions(2);
     const key = jest.fn();
     const mocks = {
-      'blessed.screen': jest.spyOn(blessed, 'screen')
-        .mockImplementationOnce(() => ({ key })),
+      'blessed.screen': jest
+        .spyOn(blessed, 'screen')
+        .mockImplementationOnce(() => ({ key }))
     };
     require('../../lib/interface/screen');
     expect(mocks['blessed.screen']).toHaveBeenCalled();
